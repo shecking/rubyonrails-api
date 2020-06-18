@@ -9,8 +9,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Book.create!([
-               { name: 'Copying and Pasting from Stack Overflow' },
-               { name: 'Trying Stuff Until it Works' },
-               { name: 'A Third Thing' }
-             ])
+#
+#
+#
+# Book.create!([
+#                { name: 'Copying and Pasting from Stack Overflow' },
+#                { name: 'Trying Stuff Until it Works' },
+#                { name: 'A Third Thing' }
+#              ])

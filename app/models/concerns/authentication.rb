@@ -4,9 +4,10 @@ module Authentication
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def authenticate(email, password)
-      user = find_by(email: email)
+    def authenticate(username, password)
+      user = find_by(username: username)
       return unless user
+
       user.send :new_token
       user.authenticate password
     end
@@ -16,9 +17,8 @@ module Authentication
     has_secure_password
     before_create :set_token
     after_find :fix_up_token
-    validates :email, uniqueness: true
-    validates :email, presence: true
-    validates :password_confirmation, presence: true, on: :create
+    validates :username, uniqueness: true
+    validates :username, presence: true
   end
 
   def logout

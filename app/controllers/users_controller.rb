@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: %i[signup signin]
+  skip_before_action :authenticate, only: %i[register signin]
 
-  # POST '/sign-up'
-  def signup
+  # POST '/register'
+  def register
     user = User.create(user_creds)
     if user.valid?
       render json: user, status: :created
@@ -16,7 +16,7 @@ class UsersController < ProtectedController
   # POST '/sign-in'
   def signin
     creds = user_creds
-    if (user = User.authenticate creds[:email],
+    if (user = User.authenticate creds[:username],
                                  creds[:password])
       render json: user, serializer: UserLoginSerializer, root: 'user'
     else
@@ -50,7 +50,10 @@ class UsersController < ProtectedController
 
   def user_creds
     params.require(:credentials)
-          .permit(:email, :password, :password_confirmation)
+          .permit(:first_name,
+                  :last_name,
+                  :username,
+                  :password)
   end
 
   def pw_creds
