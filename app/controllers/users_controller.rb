@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: %i[register signin]
+  skip_before_action :authenticate, only: %i[register login index]
 
   # POST '/register'
   def register
@@ -14,7 +14,7 @@ class UsersController < ProtectedController
   end
 
   # POST '/sign-in'
-  def signin
+  def login
     creds = user_creds
     if (user = User.authenticate creds[:username],
                                  creds[:password])
@@ -44,7 +44,17 @@ class UsersController < ProtectedController
     else
       head :bad_request
     end
+
   end
+
+  # def index
+  #   @users = User.all
+  #
+  #   render json: @users
+  # end
+  # def show
+  #   render json: Example.find(params[:id])
+  # end
 
   private
 

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Custom routes
   post '/register' => 'users#register'
-  post '/sign-in' => 'users#signin'
+  post '/login' => 'users#login'
   delete '/sign-out' => 'users#signout'
-  patch '/change-password' => 'users#changepw'
+  patch '/changepw' => 'users#changepw'
 end
