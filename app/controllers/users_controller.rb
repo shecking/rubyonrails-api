@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: %i[register login index]
+  skip_before_action :authenticate, only: %i[register login]
 
   # POST '/register'
   def register
@@ -44,7 +44,6 @@ class UsersController < ProtectedController
     else
       head :bad_request
     end
-
   end
 
   # def index
